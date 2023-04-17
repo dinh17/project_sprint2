@@ -31,8 +31,8 @@ CREATE TABLE `category` (
   
   CREATE TABLE `product` (
   `id_product` INT auto_increment NOT NULL,
-  `name_product` VARCHAR(45),
-  `description` VARCHAR(45),
+  `name_product` VARCHAR(100),
+  `description` VARCHAR(200),
   `flag_delete` BIT,
   `price` DOUBLE,
   `avatar` VARCHAR(45) ,

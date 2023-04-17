@@ -5,9 +5,10 @@
 }
 
 .header {
-  min-height: 30vh;
+  min-height: 10vh;
   width: 100%;
-  background-image: linear-gradient(rgba(4, 9, 30, 0.4), rgba(4, 9, 30, 0.4)), url("images/img-bg-01.jpg");
+  /*background-image: linear-gradient(rgba(4, 9, 30, 0.4), rgba(4, 9, 30, 0.4)), url("../assets/images/img-bg-01.jpg");*/
+  background-color:lightgray;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -483,7 +484,7 @@ footer textarea, input{
 }/*.item img*/
 
 .istock-colored-sale-notification-banner {
-  background-image: url("images/footer2.png");
+  background-image: url("src/assets/images/footer2.png");
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: cover;

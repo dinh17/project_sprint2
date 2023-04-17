@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "prototype": {
+    "jssport": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/prototype",
+            "outputPath": "dist/jssport",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -27,7 +27,9 @@
               "src/styles.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
-            "scripts": ["node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"]
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -63,18 +65,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "prototype:build"
+            "browserTarget": "jssport:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "prototype:build:production"
+              "browserTarget": "jssport:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "prototype:build"
+            "browserTarget": "jssport:build"
           }
         },
         "test": {
@@ -111,18 +113,18 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "prototype:serve"
+            "devServerTarget": "jssport:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "prototype:serve:production"
+              "devServerTarget": "jssport:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "prototype",
+  "defaultProject": "jssport",
   "cli": {
     "analytics": false
   }
