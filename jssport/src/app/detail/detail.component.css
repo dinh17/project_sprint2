@@ -1,10 +1,27 @@
 .text-bold {
   font-weight: 800;
 }
+.custom-control-inline {
+  display: inline-flex;
+  margin-right: 1rem;
+}
 
 text-color {
   color: #0093c4;
 }
+
+.custom-radio .custom-control-label::before {
+  border-radius: 50%;
+}
+
+.custom-radio .custom-control-input:checked ~ .custom-control-label::after {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
+}
+
+.custom-radio .custom-control-input:disabled:checked ~ .custom-control-label::before {
+  background-color: rgba(209, 156, 151, 0.5);
+}
+
 
 /* Main image - left */
 .main-img img {

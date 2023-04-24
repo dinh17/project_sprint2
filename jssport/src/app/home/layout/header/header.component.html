@@ -1,33 +1,73 @@
-<section class="header">
-  <nav>
+
+<section class="header" style="position: sticky; z-index: 999">
+  <nav class="container">
     <div class="logo">
-      <img  routerLink="" class="animationTop delay-01" src="../assets/images/international_running__1_-removebg-preview.png"
-           style="height: 129px;width:172px"/>
+      <a routerLink="">
+        <img class="animationTop delay-01" src="..\assets\images\international_running__2_-removebg-preview.png" style=" background-size: cover;height:150px;width: 200px;margin-left: 20% "/></a>
     </div>
-    <div class="nav-links">
+    <div class="nav-links" >
       <ul>
-        <li>
-          <form class="d-flex">
-            <div class=" me-2">
-              <input class="form-control" type="search" placeholder="Search"
-                     aria-label="Search">
+        <li class="animationTop delay-03" style="z-index: 999;">
+          <a style="margin-left: 20px;text-decoration: none;color: #FFCE1B;" class="dropdown animationTop delay-11">
+            <span style="cursor: pointer">DANH MỤC SẢN PHẨM</span>
+            <div class="dropdown-content" style="text-align: left; width: 150px">
+              <a [routerLink]="['/product/search',0]" style="display: block" class="category-item animationTop delay-4"><i style="margin-right: 5px" class="fa-brands fa-teamspeak"></i> Tất
+                cả</a>
+
+              <a [routerLink]="['/product/search',1]" style="display: block" class="category-item animationTop delay-3">
+                <i style="margin-right: 5px" class="fa-solid fa-futbol"></i>Bóng đá</a>
+              <a [routerLink]="['/product/search',2]" style="display: block" class="category-item animationTop delay-3">
+                <i style="margin-right: 5px" class="fa-sharp fa-solid fa-volleyball"></i>Bóng chuyền</a>
+              <a [routerLink]="['/product/search',3]" style="display: block" class="category-item animationTop delay-3">
+                <i style="margin-right: 5px" class="fa-sharp fa-solid fa-basketball"></i>Bóng rổ</a>
+              <a [routerLink]="['/product/search',4]" style="display: block" class="category-item animationTop delay-3">
+                <i style="margin-right: 5px" class="fa-sharp fa-solid fa-basketball"></i>Tennis</a>
+
             </div>
+          </a>
+        </li>
+        <li class="animationTop delay-03" ><a routerLink="/body/introduce">GIỚI THIỆU</a>
+        </li>
+        <li class="animationTop delay-03" *ngIf="role=='ROLE_ADMIN'"><a routerLink="product/create">THÊM SẢN PHẨM</a>
+        </li>
+        <li class="animationTop delay-03" *ngIf="role!='ROLE_ADMIN'">
+          <a routerLink="/body/cart" style="position: relative">
+            <img class="img12" style="width: 50px; height: 50px" src="https://img.icons8.com/external-flaticons-lineal-color-flat-icons/64/null/external-cart-web-flaticons-lineal-color-flat-icons-7.png"/>
+            <span *ngIf="totalQuantity>0" style="position: absolute; top: -15px;right: -10px;color: white;background: #f44336;font-weight: bold;padding: 7% 15% 7%;border-radius: 50%;font-size: 13px;opacity: 0.8" >{{totalQuantity}}</span>
+          </a>
+        </li>
+        <li class="animationTop delay-03" style="z-index: 998"><a *ngIf="!isLoggedIn;else elseBlock" routerLink="/login">ĐĂNG NHẬP</a>
+          <ng-template #elseBlock>
             <div>
-              <button class="btn btn-outline-success" type="submit">Search</button>
+              <div class="dropdown animationTop delay-11">
+                <a class="m-3" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <div class="avatar">
+                    <img src="{{user.avatar}}" alt="avatar">
+                    <h4>{{user.username}}</h4>
+                  </div>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" style="background: radial-gradient(#0b75c7, #0a307d); cursor: pointer; width: 150px">
+                  <li class="animationTop delay-01" style="color: white" routerLink="/security/profile">
+                    <i class="fa-solid fa-user me-3" ></i><strong>{{user?.username}}</strong>
+                  </li>
+                  <li class="animationTop delay-02" ><a  class="dropdown" routerLink="/teacher/editInfoTeacher" (click)="scrollToTopLogin()"> <i class="fa-solid fa-gear me-1"></i>
+                    Sửa thông tin </a></li>
+                  <li class="animationTop delay-03"><a class="dropdown" routerLink="/security/changePassword" (click)="scrollToTopLogin()"><i class="fa-sharp fa-solid fa-key me-1" ></i> Sửa mật khẩu</a></li><br>
+
+                  <li class="animationTop delay-04"><a class="dropdown" data-bs-toggle="modal" data-bs-target="#logout" (click)="logout()"
+                                                       type="button"><i class="fa-sharp fa-solid fa-right-to-bracket me-1" ></i> Đăng xuất </a></li>
+                </ul>
+              </div>
             </div>
-          </form>
-        </li>
-        <li class="animationTop delay-03"><a style="color:black"><b>QUẢN LÝ ĐẶT SÂN</b></a>
-        <li class="animationTop delay-03"><a style="color:black"><b>ĐĂNG NHẬP</b></a>
-        </li>
-        <li class="animationTop delay-03">
-          <a routerLink="/cart" ><img
-            src="https://img.icons8.com/external-wanicon-lineal-color-wanicon/64/null/external-cart-supermarket-wanicon-lineal-color-wanicon.png"
-            style="width: 70px"/></a>
+          </ng-template>
         </li>
 
       </ul>
     </div>
   </nav>
+  <div class="scroll-to-top zoom" *ngIf="pageYoffSet > 0">
+    <a class="btn ga" (click)="scrollToTop()" style="background-color: rgba(245,52,18,0.48)">
+      <i class="fas fa-angle-double-up" style="width: 30px; height: 40px; color: #eeeeee; padding-top: 10px"></i>
+    </a>
+  </div>
 </section>
-

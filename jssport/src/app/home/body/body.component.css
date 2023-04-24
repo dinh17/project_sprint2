@@ -114,7 +114,7 @@
   display: inline-block;
   font-size: 18px;
   font-weight: normal;
-  color: lightsalmon;
+  color: #ffcb77;
   opacity: 0.75;
 }
 
@@ -122,6 +122,17 @@
   opacity: 1;
   -webkit-transition: all 0.35s ease;
   transition: all 0.35s ease;
+}
+.global-notification-container{
+  align-items: center;
+  bottom: 0;
+  justify-content: center;
+  left: 50%;
+  padding: 0 12px;
+  position: fixed;
+  transform: translate(-50%);
+  width: 100%;
+  z-index: 101;
 }
 
 /*phuc*/
