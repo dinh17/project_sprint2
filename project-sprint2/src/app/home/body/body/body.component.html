@@ -1,0 +1,183 @@
+<!-------------------------Nhãn hiệu ---------------------------->
+<div>
+  <div class="container">
+    <div class="row m-2">
+      <ul class="d-flex justify-content-between" style="list-style: none">
+        <li><a href="/runnerinn/en/asics/284/m" title="Asics">
+          <img alt="Asics" src="https://storage.googleapis.com/tradeinn-images/images/logos_proveidors/284.jpg"></a>
+        </li>
+        <li><a href="/runnerinn/en/adidas/263/m" title="adidas">
+          <img alt="adidas" src="https://storage.googleapis.com/tradeinn-images/images/logos_proveidors/263.jpg"></a>
+        </li>
+        <li><a href="/runnerinn/en/nike/365/m" title="Nike">
+          <img alt="Nike" src="https://storage.googleapis.com/tradeinn-images/images/logos_proveidors/365.jpg"></a>
+        </li>
+        <li><a href="/runnerinn/en/puma/514/m" title="Puma">
+          <img alt="Puma" src="https://storage.googleapis.com/tradeinn-images/images/logos_proveidors/514.jpg"></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!------------------------------Carourel --------------------------------------------------->
+  <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner h-25 w-100">
+      <div class="carousel-item active" style="height:600px">
+        <img src="https://cdn.shopify.com/s/files/1/0456/5070/6581/files/1960740nocta.jpg?v=1680597659"
+             class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item" style="height:600px;">
+        <img
+          src="https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/if_w_gt_1920,w_1920/viVN/Images/football-fw23-federations-agnostics-hp-mh-d_tcm337-1000361.jpg"
+          class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item " style="height:600px;">
+        <img
+          src="https://marvel-b1-cdn.bc0a.com/f00000000211790/playitagainsports.imgix.net/buyerweb/assets/_pias/_img/_home/home__jumbotron--gym.jpg?auto=compress"
+          class="d-block w-100" alt="...">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+
+  <div>
+
+    <h1 class="text-center m-1">Sản phẩm bán chạy</h1>
+    <div class="site-section site-blocks-2 m-5" style="margin-top: 1%;">
+      <div class="container">
+        <div class="row d-flex justify-content-between">
+          <div class="col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0" data-aos="fade" data-aos-delay="">
+            <a class="block-2-item" href="#">
+              <figure class="image" style="height: 400px;">
+                <img
+                  src="https://product.hstatic.net/1000008082/product/ull-zip_sweater_black_ht6856_21_model_1aae41c13f8c48719869122595bef1b6_e507a4bc211c40ce9491af32e59a51d9_large.jpg"
+                  alt="" class="img-fluid">
+              </figure>
+              <div class="text">
+                <span class="text-uppercase">Bộ siêu tập</span>
+                <h3>Đàn ông</h3>
+              </div>
+            </a>
+          </div>
+          <div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0" data-aos="fade" data-aos-delay="100">
+            <a class="block-2-item" href="#">
+              <figure class="image" style="height: 400px;">
+                <img
+                  src="https://product.hstatic.net/1000008082/product/h56861_21_model_6f60071d4e0444dda84f2296796272ec_large.jpg"
+                  alt="" class="img-fluid">
+              </figure>
+              <div class="text">
+                <span class="text-uppercase">Bộ siêu tập</span>
+                <h3>Phụ nữ</h3>
+              </div>
+            </a>
+          </div>
+          <div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0" data-aos="fade" data-aos-delay="200">
+            <a class="block-2-item" href="#">
+              <figure class="image" style="height: 400px;">
+                <img
+                  src="https://product.hstatic.net/1000008082/product/upload_2624803866e245559ccec75a371c7b22_ce7023fe8752417dac56ac75dc65b26e_large.jpg"
+                  alt="" class="img-fluid">
+              </figure>
+              <div class="text">
+                <span class="text-uppercase">Bộ siêu tập</span>
+                <h3>Trẻ em</h3>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!------- Phụ kiện thể thao ---------------->
+  <div>
+    <h1 class="text-center m-1">Sản phẩm</h1>
+    <div class="site-section site-blocks-2 m-5" style="margin-top: 2%;">
+      <div class="container">
+        <div class="row d-flex justify-content-between">
+          <div class="col-sm-3 col-md-3 col-lg-3 mb-3 mb-lg-3" data-aos="fade" data-aos-delay=""
+               *ngFor="let item of product">
+            <a class="block-2-item" href="#" [routerLink]="['/body/detail',item.productId]">
+              <figure class="image" style="height: 400px;">
+                <img
+                  [src]="item.avatar"
+                  alt="" class="img-fluid">
+              </figure>
+              <div class="text">
+                  <span class="text-uppercase">{{item.productName}}</span>
+                  <h3>{{item.price}}</h3>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+<div style="margin-top: 12px">
+  <div *ngIf="teamPage" class="d-flex justify-content-center" id="last-row">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        <li class="page-item" [ngClass]="teamPage.first ? 'disabled': ''">
+          <a role="button" class="page-link" (click)="changePage(0)">Trang đầu</a>
+        </li>
+        <li class="page-item" [ngClass]="teamPage.first ? 'disabled': ''">
+          <a role="button" class="page-link" (click)="changePage(teamPage.number - 1)"><</a>
+        </li>
+        <li class="page-item" *ngIf="teamPage.number - 3 > 0">
+          <a role="button" class="page-link"
+             (click)="changePage(teamPage.number - 4)">{{teamPage.number - 3}}</a>
+        </li>
+        <li class="page-item" *ngIf="teamPage.number - 2 > 0">
+          <a role="button" class="page-link"
+             (click)="changePage(teamPage.number - 3)">{{teamPage.number - 2}}</a>
+        </li>
+        <li class="page-item" *ngIf="teamPage.number - 1 > 0">
+          <a role="button" class="page-link"
+             (click)="changePage(teamPage.number - 2)">{{teamPage.number - 1}}</a>
+        </li>
+        <li class="page-item" *ngIf="teamPage.number > 0">
+          <a role="button" class="page-link"
+             (click)="changePage(teamPage.number - 1)">{{teamPage.number}}</a>
+        </li>
+        <li class="page-item active"><a class="page-link">{{teamPage.number + 1}}</a></li>
+        <li class="page-item" *ngIf="teamPage.number + 2 <= teamPage.totalPages">
+          <a role="button" class="page-link"
+             (click)="changePage(teamPage.number + 1)">{{teamPage.number + 2}}</a>
+        </li>
+        <li class="page-item" *ngIf="teamPage.number + 3 <= teamPage.totalPages">
+          <a role="button" class="page-link"
+             (click)="changePage(teamPage.number + 2)">{{teamPage.number + 3}}</a>
+        </li>
+        <li class="page-item" *ngIf="teamPage.number + 4 <= teamPage.totalPages">
+          <a role="button" class="page-link"
+             (click)="changePage(teamPage.number + 3)">{{teamPage.number + 4}}</a>
+        </li>
+        <li class="page-item" *ngIf="teamPage.number + 5 <= teamPage.totalPages">
+          <a role="button" class="page-link"
+             (click)="changePage(teamPage.number + 4)">{{teamPage.number + 5}}</a>
+        </li>
+        <li class="page-item" [ngClass]="teamPage.last ? 'disabled': ''">
+          <a role="button" class="page-link"
+             (click)="changePage(teamPage.number + 1)">></a>
+        </li>
+        <li class="page-item" [ngClass]="teamPage.last ? 'disabled': ''">
+          <a role="button" class="page-link"
+             (click)="changePage(teamPage.totalPages - 1)">
+            Trang cuối
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
