@@ -2,6 +2,7 @@ package com.example.jssport_back_end.service.impl;
 
 import com.example.jssport_back_end.dto.IProductDto;
 
+import com.example.jssport_back_end.dto.ProductDto;
 import com.example.jssport_back_end.model.product.Product;
 import com.example.jssport_back_end.repository.IProductRepository;
 import com.example.jssport_back_end.service.IProductService;
@@ -24,5 +25,10 @@ public class ProductService implements IProductService {
     @Override
     public Optional<Product> findById(Long productId) {
         return iProductRepository.findById(productId);
+    }
+
+    @Override
+    public Page<Product> searchAllProductByName(Pageable pageable, String name) {
+        return iProductRepository.searchAllProductByName(pageable,name);
     }
 }

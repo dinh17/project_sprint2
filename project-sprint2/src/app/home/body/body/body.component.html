@@ -48,7 +48,13 @@
 
 
   <div>
-
+    <div class="d-flex offset-3 col-6 zoom mt-5">
+      <input class="form-control me-2" [(ngModel)]="productName" type="search"
+             placeholder="Bạn cần tìm gì?"
+             aria-label="Search" style="border-color: #0076ad">
+      <button class="btn btn-primary" (click)="search(page)" type="button"
+              style="border-radius: 50%"><i class="fa-brands fa-searchengin"></i></button>
+    </div>
     <h1 class="text-center m-1">Sản phẩm bán chạy</h1>
     <div class="site-section site-blocks-2 m-5" style="margin-top: 1%;">
       <div class="container">
@@ -96,6 +102,7 @@
       </div>
     </div>
   </div>
+
 
   <!------- Phụ kiện thể thao ---------------->
   <div>

@@ -10,6 +10,9 @@ import {ShareService} from '../../../service/security/share.service';
 import {OrderService} from '../../../service/cart/order.service';
 import {SecurityService} from '../../../service/security/security.service';
 import {Account} from '../../../entity/account/account';
+import {ProductService} from '../../../service/product/product.service';
+import {Product} from '../../../entity/product/product';
+import {ProjectJson} from '../../../entity/product/project-json';
 
 @Component({
   selector: 'app-header',
@@ -17,6 +20,25 @@ import {Account} from '../../../entity/account/account';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+
+  constructor(private scroll: ViewportScroller,
+              private tokenStorageService: TokenStorageService,
+              private securityService: SecurityService,
+              private router: Router,
+              private shareService: ShareService,
+              private orderService: OrderService,
+              private productService: ProductService) {
+    this.securityService.getIsLoggedIn().subscribe(next => {
+      this.isLoggedIn = next;
+    });
+    this.securityService.getUserLoggedIn().subscribe(next => {
+      this.user = next;
+    });
+  }
+
+  private message: ' ';
+  private product: Product[] = [];
+  private productPage: any;
 
   pageYoffSet = 0;
   isLoggedIn = false;
@@ -32,19 +54,6 @@ export class HeaderComponent implements OnInit {
     email: '', phoneNumber: '', address: '', name: '', avatar: ''
   };
 
-  constructor(private scroll: ViewportScroller,
-              private tokenStorageService: TokenStorageService,
-              private securityService: SecurityService,
-              private router: Router,
-              private shareService: ShareService,
-              private orderService: OrderService) {
-    this.securityService.getIsLoggedIn().subscribe(next => {
-      this.isLoggedIn = next;
-    });
-    this.securityService.getUserLoggedIn().subscribe(next => {
-      this.user = next;
-    });
-  }
 
   getInfoByAccountId() {
     // tslint:disable-next-line:radix
@@ -72,12 +81,10 @@ export class HeaderComponent implements OnInit {
     return role;
   }
 
-  // tslint:disable-next-line:typedef
   @HostListener('window:scroll', ['$event']) onScroll() {
     this.pageYoffSet = window.pageYOffset;
   }
 
-  // tslint:disable-next-line:typedef
   scrollToTop() {
     this.scroll.scrollToPosition([0, 0]);
   }
@@ -101,5 +108,6 @@ export class HeaderComponent implements OnInit {
       timer: 2000
     });
   }
+
 
 }

@@ -1,4 +1,6 @@
 package com.example.jssport_back_end.controller;
+import com.example.jssport_back_end.dto.IProductDto;
+import com.example.jssport_back_end.dto.ProductDto;
 import com.example.jssport_back_end.model.product.Product;
 import com.example.jssport_back_end.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,4 +34,17 @@ public class ProductRestController {
         return new ResponseEntity<>(product,HttpStatus.OK);
     }
 
+    @GetMapping("/searchName")
+    public ResponseEntity<Page<Product>> searchByName(@RequestParam("productName") String productName, @PageableDefault(page=0,size = 8) Pageable pageable){
+        Page<Product> productPage = null;
+        if(productName.isEmpty()){
+            productPage =iProductService.getAllProduct(pageable);
+        }else {
+            productPage = iProductService.searchAllProductByName(pageable, productName);
+        }
+        if(productPage.isEmpty()){
+            return new ResponseEntity<>(productPage, HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(productPage,HttpStatus.OK);
+    }
 }

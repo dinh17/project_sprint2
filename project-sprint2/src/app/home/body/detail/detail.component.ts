@@ -13,8 +13,8 @@ import {Product} from '../../../entity/product/product';
   styleUrls: ['./detail.component.css']
 })
 export class DetailComponent implements OnInit {
-  role = '';
   product: Product = {productId: 0, price: 0, productName: '', avatar: ''};
+  private productId: number;
 
   constructor(private productService: ProductService,
               private activatedRoute: ActivatedRoute,
@@ -23,9 +23,6 @@ export class DetailComponent implements OnInit {
               private title: Title,
               private sizeService: SizeService,
               private warehouseService: WarehouseService) {
-    if (this.tokenStorageService.getToken()) {
-      this.role = this.tokenStorageService.getRole()[0];
-    }
     this.activatedRoute.paramMap.subscribe(next => {
       // tslint:disable-next-line:radix
       const id = parseInt(next.get('id') as string);
@@ -37,6 +34,7 @@ export class DetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    window.scrollTo(20, 50);
   }
 
 }
