@@ -24,14 +24,7 @@ public interface IAccountRepository extends JpaRepository<Account,Long> {
     @Query(value = "select * from account where username = :username", nativeQuery = true)
     Optional<Account> findByUsername(@Param("username") String username);
 
-    /**
-     * Create by : NuongHT
-     * Date create: 27/02/2023
-     * Description: create query get account by accountID and save newPass allow accountID
-     *
-     * @param 'accountId'
-     * @return account
-     */
+
     @Query(value = "select * from account where account_id = :accountId", nativeQuery = true)
     Optional<Account> findByUserId(@Param("accountId") Long accountId);
 
@@ -48,4 +41,6 @@ public interface IAccountRepository extends JpaRepository<Account,Long> {
     @Query(value = "update account set name = :name, phone_number= :phoneNumber, address = :address, email = :email where account_id = :accountId",nativeQuery = true)
     void changeInfo(@Param("accountId") Long accountId,@Param("name") String name,
                     @Param("phoneNumber") String phoneNumber,@Param("address") String address,@Param("email") String email);
+
+
 }

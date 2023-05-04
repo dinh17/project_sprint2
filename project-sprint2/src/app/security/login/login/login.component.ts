@@ -76,7 +76,6 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    alert('asdas');
     this.errors = {username: '', password: ''};
     this.errorMessage = '';
     if (this.formLogin.valid) {

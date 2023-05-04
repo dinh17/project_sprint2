@@ -13,8 +13,8 @@ import {ProjectJson} from '../../../entity/product/project-json';
 export class BodyComponent implements OnInit {
   product: Product[] = [];
   teamPage!: ProjectJson;
-  private productName = '';
-  private message = '';
+  productName = '';
+  message = '';
   page = 0;
 
 
