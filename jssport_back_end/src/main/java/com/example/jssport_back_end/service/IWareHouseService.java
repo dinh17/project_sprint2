@@ -8,4 +8,7 @@ public interface IWareHouseService {
     List<IWareHouseDto> getAll();
 
     IWareHouseDto findByProductId(Long productId);
+
+    void updateQuantityProduct(Long orderId );
+
 }

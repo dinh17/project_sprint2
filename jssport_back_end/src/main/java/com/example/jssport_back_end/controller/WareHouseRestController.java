@@ -1,6 +1,8 @@
 package com.example.jssport_back_end.controller;
 
 import com.example.jssport_back_end.dto.IWareHouseDto;
+import com.example.jssport_back_end.dto.orders.CartDto;
+import com.example.jssport_back_end.dto.orders.OrderPaymentDto;
 import com.example.jssport_back_end.model.warehouse.Warehouse;
 import com.example.jssport_back_end.service.IWareHouseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,5 +34,11 @@ public class WareHouseRestController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(wareHouseDto, HttpStatus.OK);
+    }
+
+    @PostMapping("/updateProduct")
+    public ResponseEntity<?> updateProduct(@RequestBody OrderPaymentDto orderPaymentDto) {
+        iWareHouseService.updateQuantityProduct(orderPaymentDto.getOrderId());
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

@@ -1,60 +1,87 @@
 <section class="h-100 h-custom">
-<div class="container my-5">
-  <h1>Chi tiết sản phẩm</h1>
-  <div class="row">
-    <div class="col-md-5">
-      <div class="main-img">
-        <img class="img-fluid"  [src]="product.avatar" alt="ProductS">
+  <div class="container my-5">
+    <h1>Chi tiết sản phẩm</h1>
+    <div class="row">
+      <div class="col-md-5">
+        <div class="main-img">
+          <img class="img-fluid" [src]="product.avatar" alt="ProductS">
+        </div>
+        <div class="mt-md-5">
+          <h6 class="mb-0"><a href="#!" class="text-body"><i
+            class="fas fa-long-arrow-alt-left me-2"></i>Quay lại </a></h6>
+        </div>
       </div>
-      <div class="mt-md-5">
-        <h6 class="mb-0"><a href="#!" class="text-body"><i
-          class="fas fa-long-arrow-alt-left me-2"></i>Quay lại </a></h6>
-      </div>
-    </div>
-    <div class="col-md-7">
-      <div class="main-description px-2">
-        <div class="category text-bold">
-          Loại: {{product.category.categoryName}}
-        </div>
-        <div class="product-title text-bold my-3">
-          {{product.productName}}
-        </div>
-        <div class="price-area my-4">
-          <p class="old-price mb-1"><del>{{product.price}}</del> <span class="old-price-discount text-danger">(20% giảm)</span></p>
-          <p class="new-price text-bold mb-1">{{product.price}}</p>
-        </div>
-
-        <div class="buttons d-flex my-3">
-          <div class="block">
-            <button class="shadow btn custom-btn" [routerLink]="['/body/cart']">Thêm vào giỏ</button>
+      <div class="col-md-7">
+        <div class="main-description px-2">
+          <div class="category text-bold">
+            Loại: {{product.category.categoryName}}
           </div>
-          <div class="block quantity">
-            <input type="number" class="form-control" id="cart_quantity" value="1" min="0" max="5" placeholder="Enter email" name="cart_quantity">
+          <div class="product-title text-bold my-3">
+            {{product.productName}}
+          </div>
+
+          <!--          <h6 class="size d-flex">-->
+          <!--            <label for="size" class="me-2 col-4">KÍCH CỠ: </label>-->
+          <!--            <select id="size" class="select form-select col-6" #size style="width: 24%">-->
+          <!--              <option value="">Chọn size</option>-->
+          <!--              <option *ngFor="let s of sizeList" [value]="s.sizeId">{{s.name}}</option>-->
+          <!--            </select>-->
+          <!--          </h6>-->
+          <div class="buttons d-flex my-3 row">
+            <div class="col-md-2">
+              Kích Cỡ :
+            </div>
+            <div class="col-md-3">
+              <select id="size" class="select form-select" #size>
+                <option value="">Chọn size</option>
+                <option *ngFor="let s of sizeList" [value]="s.sizeId">{{s.name}}</option>
+              </select>
+            </div>
+            <div class="col-md-7">
+            </div>
+          </div>
+
+          <div class="price-area my-4">
+            <p class="old-price mb-1">
+              <del>{{product.price| currency:'VND'}}</del>
+              <span class="old-price-discount text-danger">(20% giảm)</span></p>
+            <p class="new-price text-bold mb-1">{{product.price| currency:'VND'}}</p>
+          </div>
+
+          <div class="buttons d-flex my-3">
+            <div class="block">
+              <button class="shadow btn custom-btn" [disabled]="role=='ROLE_ADMIN'"
+                      (click)="addToCart(product.productId, quantity1.value,product)">Thêm vào giỏ
+              </button>
+            </div>
+            <div class="block quantity">
+              <input type="number" class="form-control" min="1" value="1" style="width: 60px;display: inline"
+                     name="quantity" #quantity1>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="product-details my-4">
-      </div>
-
-      <div class="row questions bg-light p-3">
-        <div class="col-md-12 text">
-          <p class="details-title text-color mb-1">Mô tả chi tiết sản phẩm </p>
-          <p class="description">{{product.description}}</p>
+        <div class="product-details my-4">
         </div>
-      </div>
 
-      <div class="delivery my-4">
-        <p class="font-weight-bold mb-0"><span><i class="fa-solid fa-truck"></i></span>
-          <b>Đơn hàng sẽ được chuyển đi trong 3 ngày kể từ ngày nhận đơn</b> </p>
-        <p class="text-secondary">Đặt ngay bây giờ để sản phẩm có thể được vận chuyển</p>
-      </div>
-      <div class="delivery-options my-4">
-        <p class="font-weight-bold mb-0"><span><i class="fa-solid fa-filter"></i></span> <b>Đơn vị vận chuyển</b> </p>
-        <p class="text-secondary">Express</p>
-      </div>
-      <hr class="my-4">
+        <div class="row questions bg-light p-3">
+          <div class="col-md-12 text">
+            <p class="details-title text-color mb-1">Mô tả chi tiết sản phẩm </p>
+            <p class="description">{{product.description}}</p>
+          </div>
+        </div>
 
+        <div class="delivery my-4">
+          <p class="font-weight-bold mb-0"><span><i class="fa-solid fa-truck"></i></span>
+            <b>Đơn hàng sẽ được chuyển đi trong 3 ngày kể từ ngày nhận đơn</b></p>
+          <p class="text-secondary">Đặt ngay bây giờ để sản phẩm có thể được vận chuyển</p>
+        </div>
+        <div class="delivery-options my-4">
+          <p class="font-weight-bold mb-0"><span><i class="fa-solid fa-filter"></i></span> <b>Đơn vị vận chuyển</b></p>
+          <p class="text-secondary">Express</p>
+        </div>
+        <hr class="my-4">
+
+      </div>
     </div>
   </div>
-</div>
 </section>

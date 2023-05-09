@@ -97,20 +97,15 @@ export class LoginComponent implements OnInit {
           this.router.navigateByUrl('/body');
           this.formLogin.reset();
           // tslint:disable-next-line:triple-equals
-          // if (this.tokenStorageService.getRole()[0] != 'ROLE_ADMIN') {
-          //   // tslint:disable-next-line:radix
-          //   this.orderService.createCart(parseInt(this.tokenStorageService.getIdAccount())).subscribe();
-          // }
+          if (this.tokenStorageService.getRole()[0] != 'ROLE_ADMIN') {
+            // tslint:disable-next-line:radix
+            this.orderService.createCart(parseInt(this.tokenStorageService.getIdAccount())).subscribe();
+          }
           // tslint:disable-next-line:radix
-          // this.orderService.findOrderByAccountId(parseInt(data.id)).subscribe(next => {
-          //   this.order = next;
-          //   // tslint:disable-next-line:no-shadowed-variable
-          //   this.orderService.addCartLocal(this.tokenStorageService.getCart(), this.order.orderId).subscribe(next => {
-          //       this.tokenStorageService.removeCart();
-          //       this.shareService.sendClickEvent();
-          //     }
-          //   );
-          // });
+          this.orderService.findOrderByAccountId(parseInt(data.id)).subscribe(next => {
+            this.order = next;
+            console.log(next);
+          });
           Swal.fire({
             position: 'center',
             icon: 'success',

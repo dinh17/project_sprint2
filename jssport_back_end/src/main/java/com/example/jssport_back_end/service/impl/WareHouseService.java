@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 public class WareHouseService implements IWareHouseService {
     @Autowired
@@ -21,4 +22,11 @@ public class WareHouseService implements IWareHouseService {
     public IWareHouseDto findByProductId(Long productId) {
         return wareHouseRepository.findByProductId(productId);
     }
+
+    @Override
+    public void updateQuantityProduct(Long orderId) {
+        wareHouseRepository.updateProduct(orderId);
+    }
+
+
 }

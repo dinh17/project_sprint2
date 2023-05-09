@@ -1,6 +1,10 @@
 package com.example.jssport_back_end.service.impl;
 
 import com.example.jssport_back_end.dto.orders.ICartListDto;
+import com.example.jssport_back_end.dto.orders.IOrderPaymentDto;
+import com.example.jssport_back_end.dto.orders.ITotalDto;
+import com.example.jssport_back_end.dto.orders.OrderPaymentDto;
+import com.example.jssport_back_end.model.order.PurchaseHistory;
 import com.example.jssport_back_end.repository.IPurchaseHistoryRepository;
 import com.example.jssport_back_end.service.IPurchaseHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,15 +18,55 @@ public class PurchaseHistoryService implements IPurchaseHistoryService {
     IPurchaseHistoryRepository iPurchaseHistoryRepository;
 
     @Override
-    public void createCartItem(Long productId, Long orderId, Integer quantity) {
-        List<ICartListDto>cartListDtos = iPurchaseHistoryRepository.getAllProductByOderById(orderId);
+    public List<ICartListDto> getPurchaseHistoriesByOrderId(Long orderId) {
+        return iPurchaseHistoryRepository.getPurchaseHistoriesByOrderId(orderId);
+    }
+
+    @Override
+    public ITotalDto getTotal(Long orderId) {
+        return iPurchaseHistoryRepository.getTotal(orderId);
+    }
+
+    @Override
+    public void createCartItem(Long orderId, Long productId, Integer quantity) {
+        List<ICartListDto> cartListDtos = iPurchaseHistoryRepository.getAllProductByOderById(orderId);
         for (ICartListDto cart : cartListDtos) {
-            Integer newQuantity
+            if (cart.getProductId().equals(productId)) {
+                Integer newQuantity = quantity + cart.getQuantity();
+                iPurchaseHistoryRepository.updateCartItem(orderId, productId, newQuantity);
+                return;
+            }
         }
+        iPurchaseHistoryRepository.createCartItem(orderId, productId, quantity);
+    }
+
+    @Override
+    public PurchaseHistory findCartItemById(Long orderId, Long productId) {
+        return iPurchaseHistoryRepository.findCartItemById(orderId, productId);
     }
 
     @Override
     public List<ICartListDto> getAllProductByOderById(Long orderId) {
         return iPurchaseHistoryRepository.getAllProductByOderById(orderId);
+    }
+
+    @Override
+    public void updateQuantityCartItem( Long orderId,Long productId ,Integer quantity) {
+        iPurchaseHistoryRepository.updateCartItem( orderId,productId, quantity);
+    }
+
+    @Override
+    public List<ICartListDto> getAllProductByOrderId(Long orderId) {
+        return iPurchaseHistoryRepository.getAllProductByOderById(orderId);
+    }
+
+    @Override
+    public void deleteCartItem(Long orderId, Long productId) {
+    iPurchaseHistoryRepository.deleteCartItem(orderId,productId);
+    }
+
+    @Override
+    public List<OrderPaymentDto> getAllOrderByAccountId(Long accountId) {
+        return iPurchaseHistoryRepository.getAllOrderByAccountId(accountId);
     }
 }

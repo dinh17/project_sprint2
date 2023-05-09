@@ -146,16 +146,6 @@ export class TokenStorageService {
     return JSON.parse(sessionStorage.getItem(ROLE_KEY) as string);
   }
 
-  // public setDetailId(id: number) {
-  //   sessionStorage.removeItem(DETAIL_ID);
-  //   sessionStorage.setItem(DETAIL_ID,JSON.stringify(id));
-  // }
-  //
-  // getDetailId() {
-  //   return JSON.parse(<string> sessionStorage.getItem(DETAIL_ID));
-  // }
-
-  // lưu trên local
 
   public setCart(cart: Cart[]) {
     sessionStorage.removeItem(CART);

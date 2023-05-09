@@ -1,10 +1,9 @@
 
 a	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(úÇÀ~
-g	java:S101 "MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(º¹ˆëüÿÿÿÿ
-b	java:S1013"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(üÝáÐ
+b	java:S101 "MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(Õ®¿Ô
+b	java:S1015"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(üÝáÐ
 N	java:S106"9Replace this use of System.out or System.err by a logger.(ÆæÑô
-@
-java:S1905+"*Remove this unnecessary cast to "Integer".(¹ñ»·
-S	java:S106/"9Replace this use of System.out or System.err by a logger.(Š³ûæþÿÿÿÿ
-N	java:S106C"9Replace this use of System.out or System.err by a logger.(Î¤¾…
-Q	java:S125D"<This block of commented-out lines of code should be removed.(Í¬…
+S	java:S106("9Replace this use of System.out or System.err by a logger.(°ÐøÍøÿÿÿÿ
+Z	java:S1060"9Replace this use of System.out or System.err by a logger.(Úôø÷üÿÿÿÿ8ÿäïØþ0
+U	java:S106E"9Replace this use of System.out or System.err by a logger.(Î¤¾…8¼ññØþ0
+Q	java:S125F"<This block of commented-out lines of code should be removed.(Í¬…

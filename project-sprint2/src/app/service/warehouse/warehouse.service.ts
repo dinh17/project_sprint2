@@ -16,4 +16,7 @@ export class WarehouseService {
   findByProductById(productId: number): Observable<Warehouse> {
     return this.httpClient.get<Warehouse>(WAREHOUSE_API + '/detail/' + productId);
   }
+  updateQuantityProduct(orderId: number) {
+    return this.httpClient.post(WAREHOUSE_API + '/updateProduct', {orderId});
+  }
 }
