@@ -10,11 +10,12 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { IntroduceComponent } from './layout/introduce/introduce.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { PaymentComponent } from './body/payment/payment.component';
+import { PurchaseHistoryComponent } from './body/purchase-history/purchase-history.component';
 
 
 
 @NgModule({
-  declarations: [BodyComponent, CartComponent, DetailComponent, HeaderComponent, FooterComponent, IntroduceComponent, PaymentComponent],
+  declarations: [BodyComponent, CartComponent, DetailComponent, HeaderComponent, FooterComponent, IntroduceComponent, PaymentComponent, PurchaseHistoryComponent],
   exports: [
     HeaderComponent,
     FooterComponent,

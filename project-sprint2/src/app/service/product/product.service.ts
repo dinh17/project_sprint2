@@ -27,4 +27,11 @@ export class ProductService {
   search(page: number, productName: string ): Observable<Product[]> {
     return this.httpClient.get<Product[]>('http://localhost:8080/api/product/searchName' + '?page=' + page + '&productName=' + productName);
   }
+
+  searchProductByCategory(size: number, categoryId: number): Observable<any> {
+    return this.httpClient.get<any>(PRODUCT_API + '/searchCategory' + '?' + 'size=' + size + '&categoryId=' + categoryId);
+  }
+  getBestProduct(page: number): Observable<any> {
+    return this.httpClient.get<any>(PRODUCT_API + '/bestProduct' + '?' + 'page=' + page);
+  }
 }

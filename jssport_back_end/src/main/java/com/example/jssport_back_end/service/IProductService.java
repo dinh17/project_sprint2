@@ -10,7 +10,8 @@ import org.springframework.data.domain.Pageable;
 import java.util.Optional;
 
 public interface IProductService {
-    Page<Product> getAllProduct(Pageable pageable);
+    Page<IProductDto> getAllProduct(Pageable pageable);
     Optional<Product> findById(Long productId);
-    Page<Product> searchAllProductByName(Pageable pageable, String name);
+    Page<IProductDto> searchAllProductByName(Pageable pageable, String name);
+    Page<IProductDto> searchByCategory(Long categoryId,Pageable pageable);
 }

@@ -20,22 +20,6 @@ import {ProjectJson} from '../../../entity/product/project-json';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
-  constructor(private scroll: ViewportScroller,
-              private tokenStorageService: TokenStorageService,
-              private securityService: SecurityService,
-              private router: Router,
-              private shareService: ShareService,
-              private orderService: OrderService,
-              private productService: ProductService) {
-    this.securityService.getIsLoggedIn().subscribe(next => {
-      this.isLoggedIn = next;
-    });
-    this.securityService.getUserLoggedIn().subscribe(next => {
-      this.user = next;
-    });
-  }
-
   private message: ' ';
   private product: Product[] = [];
   private productPage: any;
@@ -54,6 +38,36 @@ export class HeaderComponent implements OnInit {
     email: '', phoneNumber: '', address: '', name: '', avatar: ''
   };
 
+  constructor(private scroll: ViewportScroller,
+              private tokenStorageService: TokenStorageService,
+              private securityService: SecurityService,
+              private router: Router,
+              private shareService: ShareService,
+              private orderService: OrderService,
+              private productService: ProductService) {
+    this.securityService.getIsLoggedIn().subscribe(next => {
+      this.isLoggedIn = next;
+    });
+    this.securityService.getUserLoggedIn().subscribe(next => {
+      this.user = next;
+    });
+
+    this.shareService.getClickEvent().subscribe(next => {
+      if (this.tokenStorageService.getToken()) {
+        // tslint:disable-next-line:radix no-shadowed-variable
+        this.orderService.findOrderByAccountId(parseInt(this.tokenStorageService.getIdAccount())).subscribe(next => {
+          this.order = next;
+          this.totalQuantity = this.getTotalQuantityBE(this.order.orderId);
+        });
+        this.getInfoByAccountId();
+      }
+    });
+    this.shareService.getClickEvent().subscribe(next => {
+      this.cartList = this.tokenStorageService.getCart();
+      this.totalQuantity = this.getQuantity();
+    });
+  }
+
 
   getInfoByAccountId() {
     // tslint:disable-next-line:radix
@@ -70,8 +84,37 @@ export class HeaderComponent implements OnInit {
     this.shareService.getClickEvent().subscribe(next => {
       this.role = this.getRole();
     });
+    if (this.tokenStorageService.getToken()) {
+      this.getInfoByAccountId();
+      // tslint:disable-next-line:radix
+      this.orderService.findOrderByAccountId(parseInt(this.tokenStorageService.getIdAccount())).subscribe(next => {
+        this.order = next;
+        this.totalQuantity = this.getTotalQuantityBE(this.order.orderId);
+      });
+    } else {
+      this.totalQuantity = this.getQuantity();
+    }
   }
 
+  getQuantity() {
+    let quantity = 0;
+    if (this.cartList != null) {
+      this.cartList.forEach((item: any) => {
+        quantity += item.quantity;
+      });
+    }
+    return quantity;
+  }
+
+  getTotalQuantityBE(orderId: number) {
+    this.orderService.getTotal(orderId).subscribe(next => {
+      if (next) {
+        // this.totalPayment = next.totalPayment;
+        this.totalQuantity = next.totalQuantity;
+      }
+    });
+    return this.totalQuantity;
+  }
 
   getRole() {
     let role = '';

@@ -1,10 +1,13 @@
 package com.example.jssport_back_end.repository;
 
+import com.example.jssport_back_end.dto.IBestProductDto;
 import com.example.jssport_back_end.dto.orders.ICartListDto;
 import com.example.jssport_back_end.dto.orders.IOrderPaymentDto;
 import com.example.jssport_back_end.dto.orders.ITotalDto;
 import com.example.jssport_back_end.dto.orders.OrderPaymentDto;
 import com.example.jssport_back_end.model.order.PurchaseHistory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -41,4 +44,7 @@ public interface IPurchaseHistoryRepository extends JpaRepository<PurchaseHistor
     @Query(value = "select ph.product_id as productId, p.product_name as productName, p.price, p.avatar, ph.quantity from purchase_history ph join product p on p.product_id = ph.product_id join orders o on ph.order_id = o.order_id where o.payment_status = true and ph.order_id = :orderId"
             , nativeQuery = true)
     List<ICartListDto> getPurchaseHistoriesByOrderId(@Param("orderId") Long orderId);
+
+    @Query(value = "select p.product_id as productId, p.product_name as productName, p.description, p.price, p.avatar, sum(ph.quantity) as total from purchase_history ph join product p on p.product_id = ph.product_id join orders o on ph.order_id = o.order_id where o.payment_status = true group by p.product_id order by total desc,p.product_id desc",nativeQuery = true, countQuery = "select p.product_id as productId, p.product_name as productName, p.description, p.price, p.avatar, sum(ph.quantity) as total from purchase_history ph join product p on p.product_id = ph.product_id join orders o on ph.order_id = o.order_id where o.payment_status = true group by p.product_id order by total desc,p.product_id desc")
+    Page<IBestProductDto> getBestProduct(Pageable pageable);
 }

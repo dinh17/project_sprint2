@@ -1,10 +1,13 @@
 package com.example.jssport_back_end.service;
 
+import com.example.jssport_back_end.dto.IBestProductDto;
 import com.example.jssport_back_end.dto.orders.ICartListDto;
 import com.example.jssport_back_end.dto.orders.IOrderPaymentDto;
 import com.example.jssport_back_end.dto.orders.ITotalDto;
 import com.example.jssport_back_end.dto.orders.OrderPaymentDto;
 import com.example.jssport_back_end.model.order.PurchaseHistory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -17,5 +20,6 @@ public interface IPurchaseHistoryService {
     void updateQuantityCartItem( Long orderId,Long productId, Integer quantity);
     List<ICartListDto> getAllProductByOrderId(Long orderId);
     void deleteCartItem(Long orderId, Long productId);
-    List<OrderPaymentDto> getAllOrderByAccountId(Long accountId);
+    List<ICartListDto> getAllOrderByAccountId(Long orderId);
+    Page<IBestProductDto> getBestProduct(Pageable pageable);
 }

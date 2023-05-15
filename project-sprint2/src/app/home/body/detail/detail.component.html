@@ -43,9 +43,9 @@
 
           <div class="price-area my-4">
             <p class="old-price mb-1">
-              <del>{{product.price| currency:'VND'}}</del>
-              <span class="old-price-discount text-danger">(20% giảm)</span></p>
-            <p class="new-price text-bold mb-1">{{product.price| currency:'VND'}}</p>
+              <del>{{product.price*1.2 | currency:'VND'}}</del>
+              <span class="old-price-discount text-danger">(10% giảm)</span></p>
+            <p class="new-price text-bold mb-1">{{product.price | currency:'VND'}}</p>
           </div>
 
           <div class="buttons d-flex my-3">
@@ -57,6 +57,7 @@
             <div class="block quantity">
               <input type="number" class="form-control" min="1" value="1" style="width: 60px;display: inline"
                      name="quantity" #quantity1>
+              <small style="margin-left: 5px">  Còn : {{warehouse.quantity}} sản phẩm</small>
             </div>
           </div>
         </div>

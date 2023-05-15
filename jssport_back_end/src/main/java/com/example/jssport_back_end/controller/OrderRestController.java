@@ -6,6 +6,9 @@ import com.example.jssport_back_end.model.order.PurchaseHistory;
 import com.example.jssport_back_end.service.IOrderService;
 import com.example.jssport_back_end.service.IPurchaseHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -30,7 +33,14 @@ public class OrderRestController {
         }
         return new ResponseEntity<>(order, HttpStatus.OK);
     }
-
+    @GetMapping("/order-purchase/{accountId}")
+    public ResponseEntity<Page<Orders>> findOrderPurchaseByAccountId(@PathVariable Long accountId, @PageableDefault(size = 4) Pageable pageable) {
+        Page<Orders> ordersList = iOrderService.findOrderPurchaseByAccountId(accountId, pageable);
+        if (ordersList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(ordersList, HttpStatus.OK);
+    }
 
     @GetMapping("/purchase-history/{orderId}")
     public ResponseEntity<List<ICartListDto>> getAllPurchaseHistory(@PathVariable Long orderId) {

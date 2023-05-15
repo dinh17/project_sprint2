@@ -21,7 +21,7 @@
 
                   <label class="form-label" for="form2Example18">Tài khoản: </label>
                   <input type="email" formControlName="username" id="form2Example18" class="form-control"/>
-                  <div style="position: absolute">
+                  <div style="position: absolute;margin-left: 17%">
                     <small class="m-0" style="color: red">{{errors.username}}</small>
                     <small class="m-0" style="color: red"
                            *ngIf="formLogin.controls.username.hasError('required')&&formLogin.controls.username.touched">Yêu
@@ -35,7 +35,7 @@
                     <label class="form-label" for="form2Example28">Mật khẩu: </label>
                     <input type="password" id="form2Example28" formControlName="password"
                            class="form-control "/>
-                    <div style="position: absolute">
+                    <div style="position: absolute;margin-left: 17%">
                       <small class=" m-0" style="color: red">{{errors.password}}</small>
                       <small class=" m-0" style="color: red"
                              *ngIf="formLogin.controls.password.hasError('required')&&formLogin.controls.username.touched">Yêu
@@ -84,7 +84,7 @@
               <label for="name" class="col-md-3" style="color: black"><b>Họ và tên:</b> </label>
               <div class="col-md-9 form-label-group">
                 <input autofocus id="name" formControlName="name" type="text" class="form-control">
-                <div class="error-place" style="position: absolute">
+                <div class="error-place" style="position: absolute;margin-left: 2%">
                   <small style="; color: red"
                          *ngIf="formRegister.controls.name.hasError('required') && formRegister.controls.name.touched">Yêu
                     cầu phải nhập.

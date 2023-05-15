@@ -131,7 +131,6 @@ export class CartComponent implements OnInit {
 
   updateQuantity(productId: number, qty: number, index: number) {
     if (qty > this.getWareHouse(productId)) {
-      debugger
       Swal.fire({
         position: 'center',
         icon: 'error',

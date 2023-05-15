@@ -1,13 +1,13 @@
 package com.example.jssport_back_end.service.impl;
 
-import com.example.jssport_back_end.dto.orders.ICartListDto;
-import com.example.jssport_back_end.dto.orders.IOrderPaymentDto;
-import com.example.jssport_back_end.dto.orders.ITotalDto;
-import com.example.jssport_back_end.dto.orders.OrderPaymentDto;
+import com.example.jssport_back_end.dto.IBestProductDto;
+import com.example.jssport_back_end.dto.orders.*;
 import com.example.jssport_back_end.model.order.PurchaseHistory;
 import com.example.jssport_back_end.repository.IPurchaseHistoryRepository;
 import com.example.jssport_back_end.service.IPurchaseHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -66,7 +66,12 @@ public class PurchaseHistoryService implements IPurchaseHistoryService {
     }
 
     @Override
-    public List<OrderPaymentDto> getAllOrderByAccountId(Long accountId) {
-        return iPurchaseHistoryRepository.getAllOrderByAccountId(accountId);
+    public List<ICartListDto> getAllOrderByAccountId(Long orderId) {
+        return iPurchaseHistoryRepository.getPurchaseHistoriesByOrderId(orderId);
+    }
+
+    @Override
+    public Page<IBestProductDto> getBestProduct(Pageable pageable) {
+        return iPurchaseHistoryRepository.getBestProduct(pageable);
     }
 }

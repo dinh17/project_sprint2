@@ -48,4 +48,12 @@ export class OrderService {
     return this.httpClient.put(ORDER_API + '/pay',
       {orderId, orderDate: cur.toLocaleString(), address, phoneNumber: phone, note});
   }
+
+  getAllPurchaseHistory(orderId: number): Observable<Cart[]> {
+    return this.httpClient.get<Cart[]>(ORDER_API + '/purchase-history/' + orderId);
+  }
+
+  findOrderPurchaseByAccountId(accountId: number, page: number): Observable<any> {
+    return this.httpClient.get<any>(ORDER_API + '/order-purchase/' + accountId + '?page=' + page);
+  }
 }

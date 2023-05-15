@@ -18,7 +18,7 @@ public class ProductService implements IProductService {
  @Autowired
  IProductRepository iProductRepository;
     @Override
-    public Page<Product> getAllProduct(Pageable pageable) {
+    public Page<IProductDto> getAllProduct(Pageable pageable) {
         return iProductRepository.getAllProduct(pageable);
     }
 
@@ -28,7 +28,12 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public Page<Product> searchAllProductByName(Pageable pageable, String name) {
+    public Page<IProductDto> searchAllProductByName(Pageable pageable, String name) {
         return iProductRepository.searchAllProductByName(pageable,name);
+    }
+
+    @Override
+    public Page<IProductDto> searchByCategory(Long categoryId, Pageable pageable) {
+        return iProductRepository.searchByCategory(categoryId,pageable);
     }
 }

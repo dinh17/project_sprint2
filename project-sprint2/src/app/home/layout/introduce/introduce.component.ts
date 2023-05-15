@@ -10,6 +10,7 @@ export class IntroduceComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    window.scrollTo(0, 10);
   }
 
 }

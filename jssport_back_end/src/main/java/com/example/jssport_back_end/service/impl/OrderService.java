@@ -4,6 +4,8 @@ import com.example.jssport_back_end.model.order.Orders;
 import com.example.jssport_back_end.repository.IOrderRepository;
 import com.example.jssport_back_end.service.IOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -31,5 +33,10 @@ public class OrderService implements IOrderService {
     @Override
     public void payAllByOrderId(Long orderId, String orderDate, String address, String phoneNumber, String note) {
         iOrderRepository.payAllByOrderId(orderId, orderDate, address, phoneNumber, note);
+    }
+
+    @Override
+    public Page<Orders> findOrderPurchaseByAccountId(Long accountId, Pageable pageable) {
+        return iOrderRepository.findOrderPurchaseByAccountId(accountId,pageable);
     }
 }
